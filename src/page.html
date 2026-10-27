@@ -1,0 +1,1344 @@
+<title>Einfach Software</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Wer hinter Einfach Software steckt und wie wir mit den Daten von Betrieben umgehen, die wir ansprechen: Datenschutzhinweis, Impressum und AGB.">
+<style>
+@font-face {
+  font-family: "Archivo";
+  src: url(data:font/woff2;base64,{{FONT_ARCHIVO}}) format("woff2");
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Layout: ein Betriebsordner. Oben liegt die gelbe Durchschrift für den Kunden, darunter Ablauf, Team und Abmelden, am Ende ein Ordner mit Registern für alle Rechtstexte. */
+:root {
+  --paper: #F3F4F8;
+  --surface: #FFFFFF;
+  --ink: #141932;
+  --ink-2: #4E5577;
+  --rule: #D6D9E6;
+  --tint: #E7E9F7;
+  --carbon: #2B37A6;
+  --carbon-hover: #212B88;
+  --carbon-ink: #FFFFFF;
+  --sheet: #FFF1AE;
+  --sheet-label: #575024;
+  --sheet-fill: #2B37A6;
+  --sheet-rule: rgba(87, 80, 36, .24);
+  --sheet-2: #F8D2DB;
+  --sheet-3: #FFFFFF;
+  --sheet-shadow: rgba(20, 25, 50, .30);
+  --stamp: #B3302A;
+  --band: #141932;
+  --band-ink: #F3F4F8;
+  --band-ink-2: #B7BCD8;
+  --band-rule: rgba(243, 244, 248, .16);
+  --band-btn: #FFFFFF;
+  --band-btn-ink: #141932;
+
+  --font: "Archivo", "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+  --wide: 118%;
+  --semi: 108%;
+  --narrow: 82%;
+
+  --step--1: .875rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.25rem;
+  --step-2: clamp(1.55rem, 1.2rem + 1.5vw, 2.125rem);
+  --step-3: clamp(1.95rem, 1.25rem + 2.9vw, 3.05rem);
+  --step-4: clamp(2.4rem, 1rem + 4.4vw, 4.85rem);
+
+  --radius: 4px;
+  --header-h: 68px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0C0F1F;
+    --surface: #141933;
+    --ink: #E8EAF5;
+    --ink-2: #A5ABCB;
+    --rule: #272D52;
+    --tint: #1B2149;
+    --carbon: #A0AAFF;
+    --carbon-hover: #BFC6FF;
+    --carbon-ink: #0C0F1F;
+    --sheet: #1B2150;
+    --sheet-label: #AEB3DA;
+    --sheet-fill: #C3CAFF;
+    --sheet-rule: rgba(231, 233, 255, .17);
+    --sheet-2: #2B2142;
+    --sheet-3: #222850;
+    --sheet-shadow: rgba(0, 0, 0, .55);
+    --stamp: #FF9086;
+    --band: #161C3D;
+    --band-ink: #E8EAF5;
+    --band-ink-2: #A5ABCB;
+    --band-rule: rgba(232, 234, 245, .14);
+    --band-btn: #A0AAFF;
+    --band-btn-ink: #0C0F1F;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0C0F1F;
+  --surface: #141933;
+  --ink: #E8EAF5;
+  --ink-2: #A5ABCB;
+  --rule: #272D52;
+  --tint: #1B2149;
+  --carbon: #A0AAFF;
+  --carbon-hover: #BFC6FF;
+  --carbon-ink: #0C0F1F;
+  --sheet: #1B2150;
+  --sheet-label: #AEB3DA;
+  --sheet-fill: #C3CAFF;
+  --sheet-rule: rgba(231, 233, 255, .17);
+  --sheet-2: #2B2142;
+  --sheet-3: #222850;
+  --sheet-shadow: rgba(0, 0, 0, .55);
+  --stamp: #FF9086;
+  --band: #161C3D;
+  --band-ink: #E8EAF5;
+  --band-ink-2: #A5ABCB;
+  --band-rule: rgba(232, 234, 245, .14);
+  --band-btn: #A0AAFF;
+  --band-btn-ink: #0C0F1F;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: var(--step-0);
+  font-stretch: 100%;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  z-index: 10;
+  background: var(--paper);
+}
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+[id] { scroll-margin-top: calc(var(--header-h) + 20px); }
+main { overflow-x: clip; }
+h1, h2, h3 { text-wrap: balance; overflow-wrap: break-word; hyphens: manual; }
+p, li, dd { overflow-wrap: break-word; }
+@media (max-width: 520px) { .doc p, .doc li, .facts dd { hyphens: auto; } }
+a { color: var(--carbon); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--carbon-hover); }
+:focus-visible { outline: 3px solid var(--carbon); outline-offset: 3px; border-radius: 3px; }
+.i { width: 1.1em; height: 1.1em; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+.wrap {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 720px) {
+  .wrap {
+    padding-left: max(32px, env(safe-area-inset-left, 0px));
+    padding-right: max(32px, env(safe-area-inset-right, 0px));
+  }
+}
+
+.label, .eyebrow {
+  font-size: .76rem;
+  font-stretch: var(--narrow);
+  font-weight: 650;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+.eyebrow { color: var(--ink-2); margin: 0; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 20px;
+  border: 1.5px solid transparent;
+  border-radius: 6px;
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 640;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color .15s, color .15s, border-color .15s;
+}
+.btn-primary { background: var(--carbon); color: var(--carbon-ink); }
+.btn-primary:hover { background: var(--carbon-hover); color: var(--carbon-ink); }
+.btn-ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
+.btn-ghost:hover { background: var(--ink); color: var(--paper); }
+.btn-small { padding: 9px 14px; font-size: .92rem; }
+
+/* Kopfzeile */
+.site-header {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 9;
+  background: var(--paper);
+  border-bottom: 1px solid transparent;
+  transition: border-color .2s;
+}
+.site-header.is-scrolled { border-bottom-color: var(--rule); }
+.header-row {
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 1.14rem;
+  font-stretch: var(--semi);
+  letter-spacing: -.01em;
+  white-space: nowrap;
+}
+.brand:hover { color: var(--ink); }
+.brand b { font-weight: 800; }
+.brand span { font-weight: 420; }
+.mark { width: 32px; height: 32px; flex: none; }
+.mark .m-bg { fill: var(--carbon); }
+.mark .m-ln { fill: none; stroke: var(--carbon-ink); stroke-width: 1.8; }
+.mark .m-dot { fill: var(--carbon-ink); }
+.nav { display: flex; align-items: center; gap: 26px; }
+.nav a:not(.btn) {
+  color: var(--ink-2);
+  text-decoration: none;
+  font-size: .95rem;
+  font-weight: 560;
+}
+.nav a:not(.btn):hover { color: var(--ink); }
+.menu { display: none; position: relative; }
+.menu summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 9px 14px;
+  border: 1.5px solid var(--ink);
+  border-radius: 6px;
+  font-weight: 640;
+  font-size: .95rem;
+}
+.menu summary::-webkit-details-marker { display: none; }
+.menu-panel {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  width: min(270px, calc(100vw - 32px));
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 8px;
+  display: grid;
+  box-shadow: 0 18px 40px -20px var(--sheet-shadow);
+}
+.menu-panel a {
+  padding: 11px 12px;
+  border-radius: 4px;
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 560;
+}
+.menu-panel a:hover { background: var(--tint); color: var(--ink); }
+@media (max-width: 880px) {
+  .nav { display: none; }
+  .menu { display: block; }
+}
+
+/* Einstieg */
+.hero { padding-block: clamp(36px, 6vw, 88px) clamp(56px, 8vw, 112px); }
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
+  gap: clamp(44px, 6vw, 88px);
+  align-items: center;
+}
+.hero-copy { min-width: 0; }
+.hero h1 {
+  margin: .45em 0 0;
+  font-size: var(--step-4);
+  font-stretch: var(--wide);
+  font-weight: 820;
+  line-height: .96;
+  letter-spacing: -.028em;
+}
+.hero h1 span { display: block; }
+.hero h1 .accent { color: var(--carbon); }
+.lead {
+  margin: 1.3rem 0 0;
+  max-width: 34em;
+  font-size: var(--step-1);
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+.cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 2rem; }
+.promises {
+  list-style: none;
+  margin: 1.6rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  font-size: .97rem;
+  font-weight: 540;
+}
+.promises li { display: inline-flex; align-items: center; gap: 8px; }
+.promises .i { color: var(--carbon); stroke-width: 2.4; }
+.people {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 2.1rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--rule);
+  font-size: .97rem;
+  color: var(--ink-2);
+}
+.people strong { color: var(--ink); font-weight: 650; }
+.stack { display: flex; flex: none; }
+.stack .avatar { margin-left: -10px; border: 2px solid var(--paper); }
+.stack .avatar:first-child { margin-left: 0; }
+
+.avatar {
+  display: block;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--tint);
+}
+.avatar--sm { width: 46px; height: 46px; }
+.avatar--lg { width: 108px; height: 108px; }
+.avatar--mono {
+  display: grid;
+  place-items: center;
+  color: var(--carbon);
+  font-weight: 780;
+  font-stretch: var(--semi);
+  letter-spacing: .02em;
+}
+.avatar--sm.avatar--mono { font-size: .82rem; }
+.avatar--lg.avatar--mono { font-size: 1.7rem; }
+
+/* Die Durchschrift */
+.slip {
+  position: relative;
+  width: 100%;
+  max-width: 470px;
+  margin: 0 30px 26px 0;
+  justify-self: center;
+}
+.slip-under {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  box-shadow: 0 12px 30px -18px var(--sheet-shadow);
+  transform-origin: 0 0;
+  transition: transform .45s cubic-bezier(.2, .7, .2, 1);
+}
+.slip-under.u1 { background: var(--sheet-3); transform: translate(14px, 10px) rotate(1.6deg); }
+.slip-under.u2 { background: var(--sheet-2); transform: translate(7px, 5px) rotate(.8deg); }
+.slip:hover .slip-under.u1 { transform: translate(18px, 12px) rotate(2.3deg); }
+.slip:hover .slip-under.u2 { transform: translate(9px, 6px) rotate(1.2deg); }
+.slip-sheet {
+  position: relative;
+  background: var(--sheet);
+  color: var(--sheet-label);
+  border-radius: var(--radius);
+  padding: 20px 24px 22px;
+  box-shadow: 0 1px 0 var(--sheet-rule), 0 24px 46px -24px var(--sheet-shadow);
+}
+.slip-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1.5px dashed var(--sheet-rule);
+}
+.slip-no {
+  color: var(--stamp);
+  font-weight: 700;
+  font-stretch: var(--semi);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .06em;
+  font-size: .95rem;
+}
+.slip-title {
+  margin: 14px 0 6px;
+  font-size: 1.32rem;
+  font-stretch: var(--semi);
+  font-weight: 760;
+  line-height: 1.2;
+  color: var(--sheet-label);
+}
+.slip-fields { margin: 0; display: grid; }
+.slip-fields > div {
+  display: grid;
+  grid-template-columns: 7.4rem minmax(0, 1fr);
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--sheet-rule);
+}
+.slip-fields dt { padding-top: .22rem; color: var(--sheet-label); }
+.slip-fields dd {
+  margin: 0;
+  font-size: .96rem;
+  line-height: 1.42;
+  font-weight: 520;
+  color: var(--sheet-fill);
+}
+.slip-fields .key dd { font-weight: 700; }
+.slip-foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 6px 16px;
+  margin-top: 12px;
+  color: var(--sheet-label);
+}
+.slip-foot .label { font-size: .68rem; }
+.slip-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  font-weight: 650;
+  color: var(--sheet-fill);
+}
+.slip-link:hover { color: var(--sheet-fill); }
+/* Beim Laden fächern sich die Durchschläge unter dem gelben Blatt auf. */
+@media (prefers-reduced-motion: no-preference) {
+  .slip-under.u2 { animation: slip-fan .9s cubic-bezier(.2, .7, .2, 1) .25s backwards; }
+  .slip-under.u1 { animation: slip-fan .9s cubic-bezier(.2, .7, .2, 1) .35s backwards; }
+}
+@keyframes slip-fan { from { transform: translate(0, 0) rotate(0deg); } }
+@media (max-width: 960px) {
+  .hero-grid { grid-template-columns: minmax(0, 1fr); }
+  .slip { justify-self: start; }
+}
+@media (max-width: 460px) {
+  .slip { margin-right: 22px; }
+  .slip-sheet { padding: 18px 18px 20px; }
+  .slip-fields > div { grid-template-columns: minmax(0, 1fr); gap: 3px; }
+  .slip-fields dt { padding-top: 0; }
+}
+
+/* Abschnitte */
+.sec { padding-block: clamp(64px, 9vw, 120px); border-top: 1px solid var(--rule); }
+.sec-head { max-width: 780px; }
+.sec h2 {
+  margin: .45em 0 0;
+  font-size: var(--step-3);
+  font-stretch: 112%;
+  font-weight: 780;
+  line-height: 1.04;
+  letter-spacing: -.02em;
+}
+.sec-head .lead { font-size: 1.15rem; }
+
+.steps {
+  list-style: none;
+  margin: 48px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(28px, 4vw, 52px);
+}
+.steps li { border-top: 2px solid var(--ink); padding-top: 20px; min-width: 0; }
+.step-no {
+  display: block;
+  font-size: 2.9rem;
+  font-stretch: 125%;
+  font-weight: 820;
+  line-height: 1;
+  color: var(--carbon);
+  font-variant-numeric: tabular-nums;
+}
+.steps h3 { margin: 16px 0 6px; font-size: var(--step-1); font-stretch: var(--semi); font-weight: 720; line-height: 1.25; }
+.steps p { margin: 0; color: var(--ink-2); }
+
+.team {
+  list-style: none;
+  margin: 48px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(28px, 4vw, 52px);
+}
+.person {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  padding-top: 26px;
+  border-top: 1px solid var(--rule);
+  min-width: 0;
+}
+.person .avatar { margin-bottom: 8px; }
+.person h3 { margin: 0; font-size: 1.36rem; font-stretch: var(--semi); font-weight: 730; line-height: 1.2; }
+.person .label { color: var(--carbon); }
+.person p { margin: 0; color: var(--ink-2); }
+.profile-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  margin-top: 6px;
+  font-weight: 620;
+  font-size: .97rem;
+}
+@media (max-width: 860px) {
+  .steps, .team { grid-template-columns: minmax(0, 1fr); }
+  .person { grid-template-columns: 76px minmax(0, 1fr); column-gap: 18px; row-gap: 8px; }
+  .person .avatar { grid-row: 1 / span 5; width: 76px; height: 76px; margin: 0; }
+  .person .avatar--mono { font-size: 1.3rem; }
+}
+
+/* Abmelden */
+.band { background: var(--band); color: var(--band-ink); border-top: 0; }
+.band .eyebrow { color: var(--band-ink-2); }
+.band a:not(.btn) { color: var(--band-ink); }
+.band :focus-visible { outline-color: var(--band-btn); }
+.optout {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  gap: clamp(36px, 6vw, 80px);
+  align-items: start;
+}
+.optout-copy p { margin: 1.1rem 0 0; color: var(--band-ink-2); max-width: 32em; }
+.optout-copy p.big { font-size: 1.15rem; color: var(--band-ink); }
+.actions { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--band-rule); }
+.action {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4px 24px;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--band-rule);
+}
+.action h3 { margin: 0; font-size: 1.16rem; font-stretch: var(--semi); font-weight: 700; }
+.action .label { color: var(--band-ink-2); }
+.action p { margin: 2px 0 0; color: var(--band-ink-2); font-size: .96rem; max-width: 38em; }
+.action .btn { grid-column: 2; grid-row: 1 / span 3; background: var(--band-btn); color: var(--band-btn-ink); }
+.action .btn:hover { background: var(--band-ink); color: var(--band); }
+.mailbox {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  margin-top: 26px;
+}
+.mailbox .addr-text { font-weight: 650; font-size: 1.05rem; user-select: all; overflow-wrap: anywhere; }
+.copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  border: 1px solid var(--band-rule);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--band-ink);
+  font: inherit;
+  font-size: .88rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.copy:hover { border-color: var(--band-ink-2); }
+.phone-line { margin-top: 10px; color: var(--band-ink-2); }
+.phone-line a { font-weight: 650; text-decoration: none; }
+@media (max-width: 900px) { .optout { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 520px) {
+  .action { grid-template-columns: minmax(0, 1fr); }
+  .action .btn { grid-column: 1; grid-row: auto; justify-self: start; margin-top: 12px; }
+}
+
+/* Ordner mit Registern */
+.binder {
+  display: grid;
+  grid-template-columns: 268px minmax(0, 1fr);
+  margin-top: 48px;
+  align-items: start;
+}
+.binder-tabs {
+  position: sticky;
+  top: calc(env(safe-area-inset-top, 0px) + var(--header-h) + 20px);
+  display: grid;
+  gap: 6px;
+  padding-top: 22px;
+  z-index: 2;
+}
+.binder-tab {
+  position: relative;
+  display: block;
+  margin-right: -1px;
+  padding: 13px 18px;
+  border: 1px solid var(--rule);
+  border-right: 0;
+  border-radius: var(--radius) 0 0 var(--radius);
+  background: var(--paper);
+  color: var(--ink-2);
+  font-weight: 600;
+  font-size: .98rem;
+  line-height: 1.3;
+  text-decoration: none;
+}
+.binder-tab:hover { color: var(--ink); background: var(--tint); }
+.binder-tab[aria-selected="true"] { background: var(--surface); color: var(--ink); font-weight: 720; }
+.binder-tab small { display: block; margin-top: 2px; font-size: .78rem; font-weight: 500; color: var(--ink-2); }
+.binder-panel {
+  min-width: 0;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 0 var(--radius) var(--radius) var(--radius);
+  padding: clamp(24px, 4.5vw, 60px);
+}
+@media (max-width: 880px) {
+  .binder { grid-template-columns: minmax(0, 1fr); }
+  .binder-tabs { position: static; display: flex; flex-wrap: wrap; gap: 8px; padding: 0 0 16px; }
+  .binder-tab { margin: 0; padding: 8px 14px; border: 1px solid var(--rule); border-radius: 999px; font-size: .92rem; }
+  .binder-tab small { display: none; }
+  .binder-tab[aria-selected="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .binder-panel { border-radius: var(--radius); padding: 24px 18px 28px; }
+}
+
+.doc + .doc { margin-top: 64px; padding-top: 48px; border-top: 1px solid var(--rule); }
+.has-js .doc + .doc { margin-top: 0; padding-top: 0; border-top: 0; }
+.doc h2 {
+  margin: 0;
+  font-size: var(--step-2);
+  font-stretch: 110%;
+  font-weight: 780;
+  line-height: 1.12;
+  letter-spacing: -.015em;
+}
+.doc .meta { margin: 10px 0 0; color: var(--ink-2); }
+.doc h3 {
+  margin: 2.1em 0 .5em;
+  font-size: 1.14rem;
+  font-stretch: 105%;
+  font-weight: 720;
+  line-height: 1.3;
+}
+.doc p, .doc li { max-width: 68ch; }
+.doc p { margin: .65em 0; }
+.doc ul { margin: .6em 0; padding-left: 1.2em; }
+.doc ul li { margin: .3em 0; }
+.doc address { font-style: normal; }
+.intro { font-size: 1.08rem; }
+.gist {
+  max-width: 68ch;
+  margin: .9em 0 1em;
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  background: var(--tint);
+  font-size: .98rem;
+}
+.gist .label { display: block; margin-bottom: 4px; color: var(--carbon); }
+.note { color: var(--ink-2); font-size: .95rem; }
+.clauses { list-style: none; counter-reset: clause; margin: 0; padding: 0; display: grid; gap: .55em; }
+.clauses > li {
+  counter-increment: clause;
+  display: grid;
+  grid-template-columns: 2.4em minmax(0, 1fr);
+  max-width: 72ch;
+}
+.clauses > li::before { content: "(" counter(clause) ")"; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.facts { margin: 28px 0 0; border-top: 1px solid var(--rule); }
+.facts > div {
+  display: grid;
+  grid-template-columns: 12.5rem minmax(0, 1fr);
+  gap: 6px 28px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.facts dt { font-weight: 720; font-stretch: 104%; line-height: 1.45; }
+.facts dd { margin: 0; min-width: 0; }
+.facts dd p:first-child { margin-top: 0; }
+.facts dd p:last-child { margin-bottom: 0; }
+.objection {
+  max-width: 72ch;
+  margin: 28px 0;
+  padding: 18px 22px;
+  border: 2px solid var(--carbon);
+  border-radius: var(--radius);
+}
+.objection h3 { margin: 0 0 .4em; color: var(--carbon); }
+.objection p:last-child { margin-bottom: 0; }
+.imprint { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 40px; margin-top: 28px; }
+.imprint section { min-width: 0; }
+.imprint h3 { margin-top: 1.4em; }
+@media (max-width: 640px) {
+  .facts > div { grid-template-columns: minmax(0, 1fr); }
+  .imprint { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Fußzeile */
+.site-footer { border-top: 1px solid var(--rule); padding-block: 56px 28px; }
+.foot-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr));
+  gap: 32px;
+}
+.foot-grid > * { min-width: 0; }
+.foot-grid .label { color: var(--ink-2); margin: 0 0 12px; }
+.foot-grid p, .foot-grid address { margin: 0; font-style: normal; font-size: .97rem; line-height: 1.7; }
+.foot-grid ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: .97rem; }
+.foot-grid a { color: var(--ink); text-decoration: none; }
+.foot-grid a:hover { color: var(--carbon); text-decoration: underline; }
+.foot-claim { margin-top: 14px !important; color: var(--ink-2); }
+.foot-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 24px;
+  margin-top: 44px;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+  font-size: .86rem;
+  color: var(--ink-2);
+}
+@media (max-width: 900px) { .foot-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .foot-grid { grid-template-columns: minmax(0, 1fr); } }
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.5 12.5l4.8 4.8L19.5 7"/></symbol>
+  <symbol id="i-arrow-r" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-arrow-d" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+  <symbol id="i-ext" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M15 9V5.5A1.5 1.5 0 0 0 13.5 4h-8A1.5 1.5 0 0 0 4 5.5v8A1.5 1.5 0 0 0 5.5 15H9"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5L12 13l8.5-6.5"/></symbol>
+</svg>
+
+<header class="site-header" lang="de">
+  <div class="wrap header-row">
+    <a class="brand" href="#start" aria-label="Einfach Software, zum Seitenanfang">
+      <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+        <rect class="m-bg" x="1" y="1" width="30" height="30" rx="7"/>
+        <rect class="m-ln" x="6.5" y="12" width="19" height="8" rx="4"/>
+        <circle class="m-dot" cx="16" cy="16" r="2.1"/>
+      </svg>
+      <span><b>einfach</b> software</span>
+    </a>
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a href="#team">Wer wir sind</a>
+      <a href="#interessenten">Ihre Daten</a>
+      <a href="#impressum">Impressum</a>
+      <a href="#agb">AGB</a>
+      <a class="btn btn-ghost btn-small" href="#abmelden">Keine E-Mails mehr</a>
+    </nav>
+    <details class="menu">
+      <summary>Menü</summary>
+      <div class="menu-panel">
+        <a href="#team">Wer wir sind</a>
+        <a href="#interessenten">Ihre Daten</a>
+        <a href="#abmelden">Keine E-Mails mehr</a>
+        <a href="#datenschutz">Datenschutzerklärung</a>
+        <a href="#impressum">Impressum</a>
+        <a href="#agb">AGB</a>
+      </div>
+    </details>
+  </div>
+</header>
+
+<main lang="de">
+  <section class="hero" id="start">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Einfach Software · in Gründung · Berlin</p>
+        <h1><span>Weniger Papierkram.</span> <span class="accent">Mehr Feierabend.</span></h1>
+        <p class="lead">Wir sind Max, Sebastian und Jarek. Wir wollen kleinen Betrieben aus Reinigung, Bau und Wartung die Büroarbeit abnehmen, die keiner gern macht. Hier steht kurz und ehrlich, wer wir sind und was mit Ihren Daten passiert.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#interessenten">So gehen wir mit Ihren Daten um <svg class="i" aria-hidden="true"><use href="#i-arrow-d"/></svg></a>
+          <a class="btn btn-ghost" href="#abmelden">Keine E-Mails mehr</a>
+        </div>
+        <ul class="promises">
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Wir verkaufen keine Daten</li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Abmelden mit einem Wort</li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Keine Cookies, kein Tracking</li>
+        </ul>
+        <div class="people">
+          <div class="stack">
+            <!--avatar:max:sm-->
+            <!--avatar:sebastian:sm-->
+            <!--avatar:jarek:sm-->
+          </div>
+          <p>Ihre Ansprechpartner: <strong>Max, Sebastian und Jarek</strong>. Bei uns landen Sie bei Menschen, nicht in einer Warteschleife.</p>
+        </div>
+      </div>
+
+      <figure class="slip" aria-labelledby="slip-title">
+        <div class="slip-under u1" aria-hidden="true"></div>
+        <div class="slip-under u2" aria-hidden="true"></div>
+        <div class="slip-sheet">
+          <div class="slip-head">
+            <span class="label">Durchschrift für Sie</span>
+            <span class="slip-no">Nr. 0001</span>
+          </div>
+          <h2 class="slip-title" id="slip-title">Ihre Daten bei Einfach Software</h2>
+          <dl class="slip-fields">
+            <div><dt class="label">Verantwortlich</dt><dd>Einfach Software GbR (i.&nbsp;G.), Andersenstraße&nbsp;2, 10439&nbsp;Berlin</dd></div>
+            <div><dt class="label">Welche Daten</dt><dd>Name, Betrieb, Funktion, geschäftliche E-Mail und Telefonnummer</dd></div>
+            <div><dt class="label">Woher</dt><dd>Aus öffentlichen Quellen, z.&nbsp;B. Ihrer Website oder Ihrem Impressum</dd></div>
+            <div><dt class="label">Wofür</dt><dd>Eine Anfrage für ein kurzes Gespräch über Ihr Büro und passende Angebote</dd></div>
+            <div><dt class="label">Weitergabe</dt><dd>Kein Verkauf. Nur an Dienstleister, die für uns arbeiten, z.&nbsp;B. für E-Mail</dd></div>
+            <div><dt class="label">Löschung</dt><dd>Spätestens 12&nbsp;Monate nach unserer letzten Nachricht</dd></div>
+            <div class="key"><dt class="label">Abmelden</dt><dd>Antworten Sie mit „Stopp“. Mehr braucht es nicht.</dd></div>
+          </dl>
+          <div class="slip-foot">
+            <span class="label">Rechtsgrundlage: Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO</span>
+            <span class="label">Stand 27.10.2026</span>
+          </div>
+          <a class="slip-link" href="#interessenten">Ganzen Datenschutzhinweis lesen <svg class="i" aria-hidden="true"><use href="#i-arrow-r"/></svg></a>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec" id="ablauf" aria-labelledby="ablauf-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Warum Sie von uns hören</p>
+        <h2 id="ablauf-title">So läuft der Kontakt mit uns.</h2>
+        <p class="lead">Wir schreiben Betriebe an, weil wir von Ihnen lernen wollen: Wo kostet Sie das Büro am meisten Zeit?</p>
+      </div>
+      <ol class="steps">
+        <li>
+          <span class="step-no" aria-hidden="true">1</span>
+          <h3>Wir finden Ihren Betrieb</h3>
+          <p>Zum Beispiel über Ihre Website, Ihr Impressum oder ein Branchenverzeichnis. Wir nutzen dafür nur geschäftliche Kontaktdaten.</p>
+        </li>
+        <li>
+          <span class="step-no" aria-hidden="true">2</span>
+          <h3>Wir fragen nach 20&nbsp;Minuten</h3>
+          <p>Wir möchten verstehen, wo in Ihrem Büro die meiste Zeit verloren geht. Das ist ein Gespräch, kein Verkaufstermin.</p>
+        </li>
+        <li>
+          <span class="step-no" aria-hidden="true">3</span>
+          <h3>Sie entscheiden</h3>
+          <p>Passt es Ihnen, vereinbaren wir einen Termin. Wenn nicht, genügt ein „Stopp“. Dann löschen wir Ihre Daten und melden uns nicht wieder.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="team" aria-labelledby="team-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Wer wir sind</p>
+        <h2 id="team-title">Drei Gründer. Ein Ziel: weniger Büro für Ihren Betrieb.</h2>
+        <p class="lead">Wir kommen nicht aus dem Handwerk. Deshalb hören wir zuerst zu und bauen erst dann etwas, das Ihnen wirklich Arbeit abnimmt.</p>
+      </div>
+      <ul class="team">
+        <li class="person">
+          <!--avatar:max:lg-->
+          <h3>Max Maria Cicalò</h3>
+          <span class="label">Mitgründer · Vertrieb</span>
+          <p>Max ist Ihr direkter Draht zu uns und führt die Gespräche mit den Betrieben. Er hat International Management an der Católica Lisbon studiert und kennt Software für Belege, Ausgaben und Rechnungen aus seiner Arbeit im Fintech-Vertrieb.</p>
+          <a class="profile-link" href="https://www.linkedin.com/in/mmcical%C3%B2/" target="_blank" rel="noopener noreferrer">LinkedIn-Profil <svg class="i" aria-hidden="true"><use href="#i-ext"/></svg></a>
+        </li>
+        <li class="person">
+          <!--avatar:sebastian:lg-->
+          <h3>Sebastian Wagner</h3>
+          <span class="label">Mitgründer</span>
+          <p>Sebastian arbeitet als Consultant für KI und Daten und weiß, wie sich Abläufe mit guter Software vereinfachen lassen. Studiert hat er an der Hochschule RheinMain und an der Frankfurt University of Applied Sciences.</p>
+          <a class="profile-link" href="https://www.linkedin.com/in/sebastian-wagner-9325b217a/" target="_blank" rel="noopener noreferrer">LinkedIn-Profil <svg class="i" aria-hidden="true"><use href="#i-ext"/></svg></a>
+        </li>
+        <li class="person">
+          <!--avatar:jarek:lg-->
+          <h3>Jarek Eckert</h3>
+          <span class="label">Mitgründer</span>
+          <p>Jarek hat Digital Business Management an der Hochschule RheinMain studiert und seinen MBA an der Frankfurt School gemacht. Er bringt Erfahrung aus Finanzwesen und Beratung mit.</p>
+          <a class="profile-link" href="https://www.linkedin.com/in/jarek-eckert/" target="_blank" rel="noopener noreferrer">LinkedIn-Profil <svg class="i" aria-hidden="true"><use href="#i-ext"/></svg></a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec band" id="abmelden" aria-labelledby="abmelden-title">
+    <div class="wrap optout">
+      <div class="optout-copy">
+        <p class="eyebrow">Ihr Widerspruchsrecht</p>
+        <h2 id="abmelden-title">Keine E-Mails mehr? Ein Wort genügt.</h2>
+        <p class="big">Antworten Sie auf unsere E-Mail einfach mit „Stopp“. Wir tragen Sie sofort aus, löschen Ihre Daten und schreiben Ihnen nicht wieder. Eine Begründung brauchen wir nicht.</p>
+        <p>Das gilt auch am Telefon: Sagen Sie es uns kurz, und wir melden uns nicht mehr.</p>
+        <div class="mailbox">
+          <span class="addr-text" id="addr-main">max.cicalo@einfach-software.net</span>
+          <button class="copy" type="button" id="copy-main" data-copy="max.cicalo@einfach-software.net" data-target="addr-main"><svg class="i" aria-hidden="true"><use href="#i-copy"/></svg><span class="copy-label">Adresse kopieren</span></button>
+        </div>
+        <p class="phone-line">Telefon: <a href="tel:+4915511892635">+49&nbsp;155&nbsp;11892635</a></p>
+      </div>
+      <ul class="actions">
+        <li class="action">
+          <h3>Keine Nachrichten mehr</h3>
+          <span class="label">Betreff: Stopp</span>
+          <p>Wir löschen Ihre Daten. Nur Ihre E-Mail-Adresse bleibt auf unserer Sperrliste, damit wir Sie nicht noch einmal anschreiben.</p>
+          <a class="btn btn-small" href="mailto:max.cicalo@einfach-software.net?subject=Stopp&amp;body=Bitte%20schreiben%20Sie%20mir%20keine%20E-Mails%20mehr.">E-Mail schreiben <svg class="i" aria-hidden="true"><use href="#i-mail"/></svg></a>
+        </li>
+        <li class="action">
+          <h3>Auskunft verlangen</h3>
+          <span class="label">Betreff: Auskunft</span>
+          <p>Wir schicken Ihnen alles, was wir über Sie gespeichert haben, spätestens innerhalb eines Monats.</p>
+          <a class="btn btn-small" href="mailto:max.cicalo@einfach-software.net?subject=Auskunft&amp;body=Bitte%20teilen%20Sie%20mir%20mit%2C%20welche%20Daten%20Sie%20%C3%BCber%20mich%20gespeichert%20haben.">E-Mail schreiben <svg class="i" aria-hidden="true"><use href="#i-mail"/></svg></a>
+        </li>
+        <li class="action">
+          <h3>Daten löschen lassen</h3>
+          <span class="label">Betreff: Löschen</span>
+          <p>Wir löschen Ihre Daten und bestätigen Ihnen das kurz per E-Mail.</p>
+          <a class="btn btn-small" href="mailto:max.cicalo@einfach-software.net?subject=L%C3%B6schen&amp;body=Bitte%20l%C3%B6schen%20Sie%20alle%20Daten%20zu%20meiner%20Person.">E-Mail schreiben <svg class="i" aria-hidden="true"><use href="#i-mail"/></svg></a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="rechtliches" aria-labelledby="rechtliches-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Rechtliches</p>
+        <h2 id="rechtliches-title">Alles Wichtige, ordentlich abgeheftet.</h2>
+        <p class="lead">Hier stehen unsere Rechtstexte im vollen Wortlaut. Wo es beim Lesen hilft, gibt es vorab eine Kurzfassung.</p>
+      </div>
+
+      <div class="binder">
+        <nav class="binder-tabs" aria-label="Rechtstexte">
+          <a class="binder-tab" id="tab-interessenten" href="#interessenten">Datenschutz für Interessenten<small>Wenn wir Sie ansprechen</small></a>
+          <a class="binder-tab" id="tab-datenschutz" href="#datenschutz">Datenschutzerklärung<small>Diese Website und Kontakt</small></a>
+          <a class="binder-tab" id="tab-impressum" href="#impressum">Impressum<small>Wer hinter der Seite steht</small></a>
+          <a class="binder-tab" id="tab-agb" href="#agb">AGB<small>Wenn wir zusammenarbeiten</small></a>
+          <a class="binder-tab" id="tab-avv" href="#avv">Auftragsverarbeitung<small>Daten Ihrer Kunden</small></a>
+        </nav>
+
+        <div class="binder-panel">
+
+          <article class="doc" id="interessenten" aria-labelledby="h-interessenten">
+            <h2 id="h-interessenten">Datenschutzhinweis für Interessenten</h2>
+            <p class="meta label">Stand: 27. Oktober 2026</p>
+            <p class="intro">Dieser Hinweis erklärt, welche Daten wir über Sie verarbeiten, wenn wir Sie als möglichen Kunden oder Gesprächspartner ansprechen, zum Beispiel per E-Mail oder Telefon. Damit erfüllen wir unsere Informationspflicht nach Art.&nbsp;14 DSGVO. Sind Sie bereits Kunde, gilt für Sie zusätzlich unsere <a href="#datenschutz">Datenschutzerklärung</a>.</p>
+            <dl class="facts">
+              <div>
+                <dt>Verantwortlicher</dt>
+                <dd>
+                  <p>Einfach Software GbR (in Gründung)<br>Andersenstraße 2, 10439 Berlin<br>E-Mail: <a href="mailto:max.cicalo@einfach-software.net">max.cicalo@einfach-software.net</a><br>Telefon: <a href="tel:+4915511892635">+49&nbsp;155&nbsp;11892635</a></p>
+                  <p>Einen Datenschutzbeauftragten müssen wir als kleines Team nicht benennen. Ansprechpartner für alle Fragen zum Datenschutz ist Max Maria Cicalò.</p>
+                </dd>
+              </div>
+              <div>
+                <dt>Zweck der Verarbeitung</dt>
+                <dd>
+                  <p>Wir nutzen Ihre geschäftlichen Kontaktdaten, um Sie zu einem kurzen Austausch über die Abläufe in Ihrem Büro einzuladen, Ihnen Leistungen vorzustellen, die zu Ihrem Betrieb passen könnten, und Termine mit Ihnen abzustimmen.</p>
+                  <p>Notizen aus unseren Gesprächen nutzen wir, um unser Angebot zu verbessern. Wir werten sie nur zusammengefasst aus und nennen dabei keine Namen.</p>
+                </dd>
+              </div>
+              <div>
+                <dt>Datenquelle</dt>
+                <dd><p>Ihre Kontaktdaten stammen aus öffentlich zugänglichen Quellen: von der Website oder aus dem Impressum Ihres Betriebs, aus Branchenverzeichnissen, aus Online-Unternehmensprofilen oder aus beruflichen Netzwerken wie LinkedIn. Manchmal hat uns auch jemand Ihren Betrieb empfohlen. Woher genau wir Ihre Daten haben, sagen wir Ihnen auf Nachfrage gern.</p></dd>
+              </div>
+              <div>
+                <dt>Rechtsgrundlage</dt>
+                <dd>
+                  <p>Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO. Unser berechtigtes Interesse ist es, Betrieben unsere Leistungen vorzustellen und mit Fachleuten über ihren Arbeitsalltag zu sprechen.</p>
+                  <p>Wir haben abgewogen, ob Ihre Interessen überwiegen: Wir nutzen nur geschäftliche Daten, sprechen Sie nur in Ihrer beruflichen Rolle an, melden uns sparsam, und Sie können jederzeit widersprechen.</p>
+                  <p>Kommt es zu einem Auftrag, ist Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b DSGVO die Grundlage. Geben Sie uns eine Einwilligung, etwa für Neuigkeiten per E-Mail, gilt Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;a DSGVO.</p>
+                </dd>
+              </div>
+              <div>
+                <dt>Kategorien personenbezogener Daten</dt>
+                <dd><p>Name, Funktion im Betrieb, Name und Anschrift des Betriebs, geschäftliche E-Mail-Adresse und Telefonnummer, Website, öffentlich verfügbare Angaben zu Ihrem Betrieb wie Branche, Größe und Region sowie unsere gemeinsame Korrespondenz, Termine und Gesprächsnotizen.</p></dd>
+              </div>
+              <div>
+                <dt>Empfänger</dt>
+                <dd>
+                  <p>Wir verkaufen Ihre Daten nicht und geben sie nicht an andere Unternehmen für deren eigene Zwecke weiter. Zugriff haben nur wir drei Gründer.</p>
+                  <p>Technisch helfen uns Dienstleister, die Ihre Daten nur nach unserer Weisung verarbeiten (Auftragsverarbeitung nach Art.&nbsp;28 DSGVO): unser E-Mail-Anbieter Hostinger International Ltd. (Zypern, EU) und bei Bedarf Werkzeuge für Terminplanung, Videogespräche und Kundenverwaltung.</p>
+                </dd>
+              </div>
+              <div>
+                <dt>Übermittlung in Drittländer</dt>
+                <dd><p>Grundsätzlich verarbeiten wir Ihre Daten in der EU. Sitzt ein Dienstleister außerhalb der EU oder des EWR, etwa in den USA, übermitteln wir Daten nur, wenn ein angemessenes Datenschutzniveau gesichert ist: durch einen Angemessenheitsbeschluss der EU-Kommission wie das EU-U.S. Data Privacy Framework oder durch EU-Standardvertragsklauseln.</p></dd>
+              </div>
+              <div>
+                <dt>Speicherdauer</dt>
+                <dd>
+                  <p>Wir speichern Ihre Daten nur so lange, wie wir sie für den Kontakt brauchen. Kommt kein Gespräch zustande, löschen wir sie spätestens 12&nbsp;Monate nach unserer letzten Nachricht.</p>
+                  <p>Widersprechen Sie, löschen wir sofort. Nur Ihre E-Mail-Adresse kommt dann auf eine interne Sperrliste, damit wir Sie nicht versehentlich erneut anschreiben.</p>
+                  <p>Wird aus dem Kontakt ein Auftrag, bewahren wir Geschäftsbriefe und Rechnungen so lange auf, wie es Handels- und Steuerrecht verlangen (§&nbsp;257 HGB, §&nbsp;147 AO).</p>
+                </dd>
+              </div>
+              <div>
+                <dt>Ihre Rechte</dt>
+                <dd>
+                  <p>Sie haben das Recht auf Auskunft (Art.&nbsp;15 DSGVO), Berichtigung (Art.&nbsp;16), Löschung (Art.&nbsp;17), Einschränkung der Verarbeitung (Art.&nbsp;18), Datenübertragbarkeit (Art.&nbsp;20) und Widerspruch (Art.&nbsp;21). Eine Einwilligung können Sie jederzeit mit Wirkung für die Zukunft widerrufen (Art.&nbsp;7 Abs.&nbsp;3).</p>
+                  <p>Außerdem können Sie sich bei einer Datenschutz-Aufsichtsbehörde beschweren (Art.&nbsp;77). Für uns zuständig ist die Berliner Beauftragte für Datenschutz und Informationsfreiheit, Alt-Moabit 59–61, 10555 Berlin, <a href="https://www.datenschutz-berlin.de" target="_blank" rel="noopener noreferrer">www.datenschutz-berlin.de</a>.</p>
+                </dd>
+              </div>
+              <div>
+                <dt>Pflicht zur Bereitstellung</dt>
+                <dd><p>Sie müssen uns keine Daten geben. Antworten Sie nicht, entsteht Ihnen kein Nachteil.</p></dd>
+              </div>
+              <div>
+                <dt>Automatisierte Entscheidungen</dt>
+                <dd><p>Wir treffen keine automatisierten Entscheidungen und erstellen keine Profile im Sinne von Art.&nbsp;22 DSGVO.</p></dd>
+              </div>
+            </dl>
+            <div class="objection" role="note" aria-labelledby="h-widerspruch-1">
+              <h3 id="h-widerspruch-1">Ihr Widerspruchsrecht</h3>
+              <p>Sie können der Nutzung Ihrer Daten für Direktwerbung jederzeit ohne Angabe von Gründen widersprechen. Antworten Sie dafür einfach mit „Stopp“ auf unsere E-Mail, sagen Sie es uns am Telefon oder schreiben Sie an <a href="mailto:max.cicalo@einfach-software.net?subject=Stopp">max.cicalo@einfach-software.net</a>. Wir verarbeiten Ihre Daten dann nicht mehr für diesen Zweck.</p>
+              <p>Aus Gründen, die sich aus Ihrer besonderen Situation ergeben, können Sie außerdem jeder Verarbeitung widersprechen, die auf Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO beruht.</p>
+            </div>
+          </article>
+
+          <article class="doc" id="datenschutz" aria-labelledby="h-datenschutz">
+            <h2 id="h-datenschutz">Datenschutzerklärung</h2>
+            <p class="meta label">Stand: 27. Oktober 2026</p>
+            <div class="gist"><span class="label">Kurz gesagt</span>Diese Website setzt keine Cookies, nutzt kein Tracking und lädt keine Inhalte von anderen Anbietern. Ihre Daten verarbeiten wir nur, wenn Sie uns schreiben oder anrufen oder wenn wir Sie als Interessent ansprechen.</div>
+
+            <h3>1. Verantwortlicher</h3>
+            <address>Einfach Software GbR (in Gründung)<br>Andersenstraße 2, 10439 Berlin<br>E-Mail: <a href="mailto:max.cicalo@einfach-software.net">max.cicalo@einfach-software.net</a> · Telefon: <a href="tel:+4915511892635">+49&nbsp;155&nbsp;11892635</a></address>
+            <p>Ansprechpartner für Datenschutz ist Max Maria Cicalò. Einen Datenschutzbeauftragten müssen wir als kleines Team nicht benennen.</p>
+
+            <h3>2. Hosting und Aufruf dieser Website</h3>
+            <p>Diese Website liegt bei GitHub Pages, einem Dienst der GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA. Wenn Sie die Seite öffnen, verarbeitet GitHub automatisch Daten, die Ihr Browser mitschickt: IP-Adresse, Datum und Uhrzeit des Abrufs, die aufgerufene Seite, die zuvor besuchte Seite, Browsertyp und Betriebssystem. Das ist technisch nötig, um die Seite auszuliefern und vor Angriffen zu schützen.</p>
+            <p>Rechtsgrundlage ist Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO. Dabei können Daten in die USA übermittelt werden. GitHub ist nach dem EU-U.S. Data Privacy Framework zertifiziert, für das ein Angemessenheitsbeschluss der EU-Kommission besteht (Art.&nbsp;45 DSGVO). Wir selbst werten diese Daten nicht aus und führen sie nicht mit anderen Daten zusammen.</p>
+
+            <h3>3. Keine Cookies, kein Tracking</h3>
+            <p>Wir setzen keine Cookies oder vergleichbaren Technologien ein, nutzen keine Analyse- oder Werbedienste und binden keine Social-Media-Plugins ein. Schrift und Bilder sind direkt in die Seite eingebettet. Es werden also auch keine Google Fonts oder andere Inhalte von fremden Servern nachgeladen. Deshalb brauchen wir keinen Cookie-Banner.</p>
+
+            <h3>4. Kontakt per E-Mail oder Telefon</h3>
+            <p>Schreiben Sie uns oder rufen Sie an, verarbeiten wir Ihre Angaben wie Name, Kontaktdaten und Ihr Anliegen, um Ihre Anfrage zu beantworten. Rechtsgrundlage ist Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b DSGVO, wenn es um einen möglichen Vertrag geht, sonst Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO.</p>
+            <p>Wir löschen die Daten, sobald Ihr Anliegen erledigt ist, außer gesetzliche Aufbewahrungspflichten stehen dem entgegen. Unsere E-Mail-Postfächer liegen bei Hostinger International Ltd. (Zypern, EU), der für uns als Auftragsverarbeiter tätig ist.</p>
+
+            <h3>5. Gespräche und Videotermine</h3>
+            <p>Vereinbaren wir ein Online-Gespräch, nutzen wir ein Videokonferenz-Tool. Welches, steht in der Einladung. Dabei werden Ihr Name, Ihre E-Mail-Adresse und während des Gesprächs Bild und Ton verarbeitet. Wir zeichnen Gespräche nur auf, wenn Sie vorher ausdrücklich zustimmen.</p>
+            <p>Rechtsgrundlage ist Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b oder f DSGVO, für Aufzeichnungen Ihre Einwilligung nach Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;a DSGVO.</p>
+
+            <h3>6. Wenn wir Sie ansprechen</h3>
+            <p>Wie wir mit den Daten von Betrieben umgehen, die wir von uns aus kontaktieren, steht im <a href="#interessenten">Datenschutzhinweis für Interessenten</a>.</p>
+
+            <h3>7. Links zu LinkedIn</h3>
+            <p>Wir verlinken unsere LinkedIn-Profile. Das sind einfache Links, keine eingebundenen Plugins. Erst wenn Sie darauf klicken, öffnet sich LinkedIn. Für die Datenverarbeitung dort ist die LinkedIn Ireland Unlimited Company in Dublin verantwortlich.</p>
+
+            <h3>8. Empfänger</h3>
+            <p>Wir verkaufen keine Daten. Zugriff haben nur wir und die oben genannten Dienstleister für Hosting (GitHub) und E-Mail (Hostinger). Behörden erhalten Daten nur, wenn wir gesetzlich dazu verpflichtet sind.</p>
+
+            <h3>9. Ihre Rechte</h3>
+            <p>Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung und Datenübertragbarkeit (Art.&nbsp;15 bis 20 DSGVO). Eine Einwilligung können Sie jederzeit widerrufen. Beschweren können Sie sich bei der Berliner Beauftragten für Datenschutz und Informationsfreiheit, Alt-Moabit 59–61, 10555 Berlin. Für alle Anliegen genügt eine E-Mail an uns.</p>
+
+            <div class="objection" role="note" aria-labelledby="h-widerspruch-2">
+              <h3 id="h-widerspruch-2">10. Ihr Widerspruchsrecht</h3>
+              <p>Verarbeiten wir Daten auf Grundlage von Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO, können Sie aus Gründen, die sich aus Ihrer besonderen Situation ergeben, jederzeit widersprechen. Der Nutzung für Direktwerbung können Sie ohne Angabe von Gründen widersprechen. Ein kurzes „Stopp“ per E-Mail genügt.</p>
+            </div>
+
+            <h3>11. Sicherheit</h3>
+            <p>Diese Seite wird verschlüsselt übertragen (HTTPS). Zugriff auf unsere Postfächer und Unterlagen haben nur wir drei Gründer.</p>
+
+            <h3>12. Änderungen</h3>
+            <p>Ändert sich etwas, passen wir diese Erklärung an. Es gilt die jeweils hier veröffentlichte Fassung.</p>
+          </article>
+
+          <article class="doc" id="impressum" aria-labelledby="h-impressum">
+            <h2 id="h-impressum">Impressum</h2>
+            <p class="meta label">Angaben gemäß §&nbsp;5 DDG</p>
+            <div class="imprint">
+              <section>
+                <h3>Anbieter</h3>
+                <address>Einfach Software GbR (in Gründung)<br>Andersenstraße 2<br>10439 Berlin<br>Deutschland</address>
+                <h3>Vertreten durch die Gesellschafter</h3>
+                <p>Max Maria Cicalò, Sebastian Wagner, Jarek Eckert</p>
+                <h3>Kontakt</h3>
+                <p>Telefon: <a href="tel:+4915511892635">+49&nbsp;155&nbsp;11892635</a><br>E-Mail: <a href="mailto:max.cicalo@einfach-software.net">max.cicalo@einfach-software.net</a></p>
+              </section>
+              <section>
+                <h3>Register und Umsatzsteuer</h3>
+                <p>Die Gesellschaft befindet sich in Gründung und ist noch in keinem Register eingetragen. Eine Umsatzsteuer-Identifikationsnummer liegt noch nicht vor und wird nach Erteilung hier ergänzt.</p>
+                <h3>Verantwortlich für den Inhalt nach §&nbsp;18 Abs.&nbsp;2 MStV</h3>
+                <p>Max Maria Cicalò, Anschrift wie oben</p>
+                <h3>Verbraucherstreitbeilegung</h3>
+                <p>Unser Angebot richtet sich ausschließlich an Unternehmen. Wir sind nicht verpflichtet und nicht bereit, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+              </section>
+            </div>
+            <h3>Haftung für Links</h3>
+            <p>Für die Inhalte verlinkter Seiten wie LinkedIn sind ausschließlich deren Betreiber verantwortlich. Zum Zeitpunkt der Verlinkung waren keine Rechtsverstöße erkennbar.</p>
+            <h3>Bild- und Schriftnachweis</h3>
+            <p>Porträtfotos: privat. Schrift: Archivo, © 2020 The Archivo Project Authors, lizenziert unter der SIL Open Font License 1.1.</p>
+          </article>
+
+          <article class="doc" id="agb" aria-labelledby="h-agb">
+            <h2 id="h-agb">Allgemeine Geschäftsbedingungen</h2>
+            <p class="meta label">Stand: 27. Oktober 2026</p>
+            <p class="note">Die Kurzfassungen helfen beim Lesen. Rechtlich maßgeblich ist der Text der einzelnen Paragrafen.</p>
+
+            <h3>§&nbsp;1 Geltungsbereich</h3>
+            <div class="gist"><span class="label">Kurz gesagt</span>Diese Regeln gelten für alles, was wir für Betriebe tun. Was wir mit Ihnen individuell vereinbaren, geht vor.</div>
+            <ol class="clauses">
+              <li>Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Verträge zwischen der Einfach Software GbR (in Gründung), Andersenstraße 2, 10439 Berlin („wir“), und unseren Kunden („Sie“) über Beratung, Einrichtung, Schulung und die Bereitstellung von Software.</li>
+              <li>Unser Angebot richtet sich ausschließlich an Unternehmer im Sinne von §&nbsp;14 BGB, juristische Personen des öffentlichen Rechts und öffentlich-rechtliche Sondervermögen. Verträge mit Verbrauchern schließen wir nicht.</li>
+              <li>Allgemeine Geschäftsbedingungen des Kunden gelten nur, wenn wir ihnen ausdrücklich in Textform zustimmen. Individuelle Vereinbarungen, etwa im Angebot, haben Vorrang vor diesen AGB.</li>
+            </ol>
+
+            <h3>§&nbsp;2 Angebot und Vertragsschluss</h3>
+            <div class="gist"><span class="label">Kurz gesagt</span>Ein „Ja, machen wir“ per E-Mail genügt. Was genau wir tun und was es kostet, steht im Angebot.</div>
+            <ol class="clauses">
+              <li>Unsere Angebote sind freibleibend, sofern sie nicht ausdrücklich als verbindlich bezeichnet sind.</li>
+              <li>Ein Vertrag kommt zustande, wenn Sie unser Angebot in Textform annehmen (eine E-Mail genügt) oder wir nach Ihrer Beauftragung mit der Leistung beginnen.</li>
+              <li>Inhalt, Umfang, Preis und Laufzeit ergeben sich aus dem Angebot oder unserer Auftragsbestätigung.</li>
+            </ol>
+
+            <h3>§&nbsp;3 Unsere Leistungen</h3>
+            <div class="gist"><span class="label">Kurz gesagt</span>Wir arbeiten gründlich und nach aktuellem Stand der Technik. Ein bestimmtes Ergebnis versprechen wir nur, wenn wir es ausdrücklich zusagen.</div>
+            <ol class="clauses">
+              <li>Wir erbringen die vereinbarten Leistungen sorgfältig und nach dem jeweiligen Stand der Technik.</li>
+              <li>Beratung, Einrichtung und Schulung sind Dienstleistungen. Einen bestimmten wirtschaftlichen Erfolg schulden wir nur, wenn dies ausdrücklich vereinbart ist.</li>
+              <li>Wir dürfen sorgfältig ausgewählte Dienstleister und Subunternehmer einsetzen. Für deren Verschulden haften wir wie für eigenes.</li>
+            </ol>
+
+            <h3>§&nbsp;4 Test- und Pilotphasen</h3>
+            <div class="gist"><span class="label">Kurz gesagt</span>Ausprobieren ist unverbindlich. Beide Seiten können eine kostenlose Testphase jederzeit beenden.</div>
+            <ol class="clauses">
+              <li>Bieten wir eine kostenlose Test- oder Pilotphase an, können beide Seiten sie jederzeit ohne Frist beenden.</li>
+              <li>Für unentgeltliche Leistungen haften wir nur in den Fällen von §&nbsp;9 Abs.&nbsp;1.</li>
+            </ol>
+
+            <h3>§&nbsp;5 Nutzung unserer Software</h3>
+            <div class="gist"><span class="label">Kurz gesagt</span>Sie nutzen die Software für Ihren Betrieb. Ihre Daten bleiben Ihre, und zum Vertragsende nehmen Sie alles mit.</div>
+            <ol class="clauses">
+              <li>Stellen wir Software über das Internet bereit, erhalten Sie für die Vertragslaufzeit das einfache, nicht übertragbare Recht, sie für Ihren eigenen Betrieb zu nutzen. Ihre Mitarbeitenden dürfen die Software im Rahmen der vereinbarten Nutzerzahl verwenden.</li>
+              <li>Wir bemühen uns um eine möglichst unterbrechungsfreie Verfügbarkeit. Geplante Wartungen kündigen wir nach Möglichkeit vorher an. Eine bestimmte Verfügbarkeit gilt nur, wenn sie im Angebot vereinbart ist.</li>
+              <li>Die Daten, die Sie in der Software speichern, gehören Ihnen. Zum Vertragsende können Sie sie in einem gängigen Format exportieren. Spätestens 30 Tage nach Vertragsende löschen wir sie, soweit keine gesetzlichen Pflichten entgegenstehen.</li>
+              <li>Sie halten Ihre Zugangsdaten geheim und nutzen die Software nicht für rechtswidrige Zwecke.</li>
+            </ol>
+
+            <h3>§&nbsp;6 Ihre Mitwirkung</h3>
+            <div class="gist"><span class="label">Kurz gesagt</span>Damit es klappt, brauchen wir Infos zu Ihren Abläufen und einen festen Ansprechpartner.</div>
+            <ol class="clauses">
+              <li>Sie unterstützen uns, soweit es für die Leistung nötig ist, insbesondere durch Informationen zu Ihren Abläufen, einen festen Ansprechpartner und Zugang zu den benötigten Systemen.</li>
+              <li>Verzögert sich die Leistung, weil eine Mitwirkung fehlt, verschieben sich vereinbarte Termine entsprechend.</li>
+              <li>Für die Sicherung von Daten in Ihren eigenen Systemen sind Sie verantwortlich, sofern nichts anderes vereinbart ist.</li>
+            </ol>
+
+            <h3>§&nbsp;7 Preise und Zahlung</h3>
+            <div class="gist"><span class="label">Kurz gesagt</span>Es gilt der Preis aus dem Angebot. Rechnungen zahlen Sie innerhalb von 14 Tagen.</div>
+            <ol class="clauses">
+              <li>Es gelten die im Angebot genannten Preise zuzüglich gesetzlicher Umsatzsteuer, soweit diese anfällt.</li>
+              <li>Rechnungen sind innerhalb von 14 Tagen nach Zugang ohne Abzug zahlbar. Laufende Entgelte wie monatliche Gebühren berechnen wir im Voraus, sofern nichts anderes vereinbart ist.</li>
+              <li>Bei Zahlungsverzug dürfen wir den Zugang zur Software nach vorheriger Ankündigung und Ablauf einer angemessenen Frist vorübergehend sperren.</li>
+            </ol>
+
+            <h3>§&nbsp;8 Laufzeit und Kündigung</h3>
+            <div class="gist"><span class="label">Kurz gesagt</span>Kein Knebelvertrag: Ohne andere Absprache kündigen Sie monatlich, eine E-Mail genügt.</div>
+            <ol class="clauses">
+              <li>Laufzeit und Kündigungsfristen ergeben sich aus dem Angebot.</li>
+              <li>Fehlt eine Regelung, läuft ein Vertrag über die Nutzung von Software auf unbestimmte Zeit und kann von beiden Seiten mit einer Frist von einem Monat zum Monatsende gekündigt werden.</li>
+              <li>Das Recht zur außerordentlichen Kündigung aus wichtigem Grund bleibt unberührt.</li>
+              <li>Kündigungen bedürfen der Textform. Eine E-Mail genügt.</li>
+            </ol>
+
+            <h3>§&nbsp;9 Haftung</h3>
+            <div class="gist"><span class="label">Kurz gesagt</span>Für grobe Fehler stehen wir voll ein. Bei leichten Versehen haften wir nur, wenn es um wesentliche Pflichten geht, und dann bis zur Höhe des typischen Schadens.</div>
+            <ol class="clauses">
+              <li>Wir haften unbeschränkt bei Vorsatz und grober Fahrlässigkeit, bei Verletzung von Leben, Körper oder Gesundheit, nach dem Produkthaftungsgesetz sowie im Umfang einer von uns übernommenen Garantie.</li>
+              <li>Bei leichter Fahrlässigkeit haften wir nur, wenn wir eine wesentliche Vertragspflicht verletzen. Das ist eine Pflicht, deren Erfüllung die ordnungsgemäße Durchführung des Vertrags überhaupt erst ermöglicht und auf deren Einhaltung Sie regelmäßig vertrauen dürfen. In diesem Fall ist unsere Haftung auf den vertragstypischen, vorhersehbaren Schaden begrenzt.</li>
+              <li>Soweit die Datensicherung bei Ihnen liegt, haften wir für Datenverlust nur in dem Umfang, der auch bei ordnungsgemäßer und regelmäßiger Datensicherung entstanden wäre.</li>
+              <li>Diese Regeln gelten auch für die persönliche Haftung unserer Gesellschafter, Mitarbeitenden und Erfüllungsgehilfen.</li>
+            </ol>
+
+            <h3>§&nbsp;10 Vertraulichkeit und Referenzen</h3>
+            <div class="gist"><span class="label">Kurz gesagt</span>Was wir über Ihren Betrieb erfahren, bleibt bei uns. Als Referenz nennen wir Sie nur, wenn Sie zustimmen.</div>
+            <ol class="clauses">
+              <li>Beide Seiten behandeln vertrauliche Informationen der anderen Seite vertraulich, etwa Kundendaten, Preise und interne Abläufe. Das gilt auch nach Vertragsende.</li>
+              <li>Ausgenommen sind Informationen, die öffentlich bekannt sind oder aufgrund gesetzlicher Pflichten offengelegt werden müssen.</li>
+              <li>Wir nennen Sie nur mit Ihrer vorherigen Zustimmung als Referenzkunden.</li>
+            </ol>
+
+            <h3>§&nbsp;11 Datenschutz und Auftragsverarbeitung</h3>
+            <div class="gist"><span class="label">Kurz gesagt</span>Verarbeiten wir Daten Ihrer Kunden oder Mitarbeitenden, schließen wir vorher einen Vertrag zur Auftragsverarbeitung.</div>
+            <ol class="clauses">
+              <li>Wir verarbeiten personenbezogene Daten nach der DSGVO und dem BDSG. Einzelheiten stehen in unserer <a href="#datenschutz">Datenschutzerklärung</a>.</li>
+              <li>Verarbeiten wir in Ihrem Auftrag personenbezogene Daten, schließen wir vor Beginn einen Vertrag zur <a href="#avv">Auftragsverarbeitung</a> nach Art.&nbsp;28 DSGVO.</li>
+            </ol>
+
+            <h3>§&nbsp;12 Schlussbestimmungen</h3>
+            <div class="gist"><span class="label">Kurz gesagt</span>Es gilt deutsches Recht. Gerichtsstand ist Berlin.</div>
+            <ol class="clauses">
+              <li>Es gilt das Recht der Bundesrepublik Deutschland unter Ausschluss des UN-Kaufrechts.</li>
+              <li>Sind Sie Kaufmann, juristische Person des öffentlichen Rechts oder öffentlich-rechtliches Sondervermögen, ist Gerichtsstand Berlin.</li>
+              <li>Änderungen dieser AGB gelten für bestehende Verträge nur, wenn Sie ihnen zustimmen.</li>
+              <li>Ist eine Bestimmung dieser AGB unwirksam, bleiben die übrigen wirksam. An die Stelle der unwirksamen Bestimmung tritt die gesetzliche Regelung.</li>
+            </ol>
+          </article>
+
+          <article class="doc" id="avv" aria-labelledby="h-avv">
+            <h2 id="h-avv">Auftragsverarbeitung</h2>
+            <p class="meta label">Stand: 27. Oktober 2026</p>
+            <div class="gist"><span class="label">Kurz gesagt</span>Bevor wir mit Daten Ihrer Kunden oder Mitarbeitenden arbeiten, unterschreiben wir mit Ihnen einen Vertrag zur Auftragsverarbeitung. Die Vorlage schicken wir Ihnen gern vorab.</div>
+            <p>Verarbeiten wir für Ihren Betrieb personenbezogene Daten, etwa Kundendaten in einer Software oder Stundenzettel Ihrer Mitarbeitenden, sind Sie der Verantwortliche und wir Ihr Auftragsverarbeiter. Dafür schließen wir vor Beginn einen Vertrag nach Art.&nbsp;28 DSGVO. Darin regeln wir unter anderem:</p>
+            <ul>
+              <li>Wir verarbeiten die Daten nur nach Ihrer dokumentierten Weisung und nur für den vereinbarten Zweck.</li>
+              <li>Alle, die bei uns Zugriff haben, sind zur Vertraulichkeit verpflichtet.</li>
+              <li>Wir schützen die Daten mit angemessenen technischen und organisatorischen Maßnahmen nach Art.&nbsp;32 DSGVO und beschreiben diese im Vertrag.</li>
+              <li>Unterauftragnehmer setzen wir nur ein, wenn wir sie Ihnen vorher nennen. Sie können widersprechen.</li>
+              <li>Wir unterstützen Sie, wenn Betroffene ihre Rechte geltend machen, und melden Datenschutzvorfälle unverzüglich.</li>
+              <li>Am Ende geben wir Ihnen die Daten zurück oder löschen sie, ganz wie Sie es wünschen.</li>
+              <li>Sie dürfen prüfen, ob wir uns an die Vereinbarungen halten.</li>
+            </ul>
+            <p>Fordern Sie unsere Vorlage einfach per E-Mail an: <a href="mailto:max.cicalo@einfach-software.net?subject=AVV-Vorlage">max.cicalo@einfach-software.net</a>.</p>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" id="kontakt" lang="de">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#start" aria-label="Einfach Software, zum Seitenanfang">
+          <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+            <rect class="m-bg" x="1" y="1" width="30" height="30" rx="7"/>
+            <rect class="m-ln" x="6.5" y="12" width="19" height="8" rx="4"/>
+            <circle class="m-dot" cx="16" cy="16" r="2.1"/>
+          </svg>
+          <span><b>einfach</b> software</span>
+        </a>
+        <p class="foot-claim">Weniger Papierkram. Mehr Feierabend.<br>Digitale Büroabläufe für kleine Betriebe aus Reinigung, Bau und Wartung.</p>
+      </div>
+      <div>
+        <p class="label">Kontakt</p>
+        <p>Max Maria Cicalò<br><a href="mailto:max.cicalo@einfach-software.net">max.cicalo@einfach-software.net</a><br><a href="tel:+4915511892635">+49&nbsp;155&nbsp;11892635</a></p>
+      </div>
+      <div>
+        <p class="label">Anschrift</p>
+        <address>Einfach Software GbR (i.&nbsp;G.)<br>Andersenstraße 2<br>10439 Berlin</address>
+      </div>
+      <div>
+        <p class="label">Rechtliches</p>
+        <ul>
+          <li><a href="#interessenten">Datenschutz für Interessenten</a></li>
+          <li><a href="#datenschutz">Datenschutzerklärung</a></li>
+          <li><a href="#impressum">Impressum</a></li>
+          <li><a href="#agb">AGB</a></li>
+          <li><a href="#avv">Auftragsverarbeitung</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Einfach Software GbR (in Gründung)</span>
+      <span>Keine Cookies. Kein Tracking. Keine Inhalte von Drittanbietern.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const root = document.documentElement;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const header = document.querySelector(".site-header");
+  const onScroll = () => header.classList.toggle("is-scrolled", window.scrollY > 8);
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  // Ordner: immer ein Register offen, Links auf #impressum usw. öffnen das passende.
+  const binder = document.getElementById("rechtliches");
+  const tablist = binder.querySelector(".binder-tabs");
+  const tabs = [...tablist.querySelectorAll(".binder-tab")];
+  const docs = [...binder.querySelectorAll(".doc")];
+  const ids = docs.map((doc) => doc.id);
+
+  tablist.setAttribute("role", "tablist");
+  tablist.setAttribute("aria-orientation", "vertical");
+  tabs.forEach((tab) => {
+    tab.setAttribute("role", "tab");
+    tab.setAttribute("aria-controls", tab.hash.slice(1));
+  });
+  docs.forEach((doc) => {
+    doc.setAttribute("role", "tabpanel");
+    doc.setAttribute("aria-labelledby", "tab-" + doc.id);
+  });
+  root.classList.add("has-js");
+
+  function openDoc(id, { scroll = false, smooth = true } = {}) {
+    if (!ids.includes(id)) return false;
+    docs.forEach((doc) => { doc.hidden = doc.id !== id; });
+    tabs.forEach((tab) => {
+      const active = tab.hash === "#" + id;
+      tab.setAttribute("aria-selected", active ? "true" : "false");
+      tab.tabIndex = active ? 0 : -1;
+    });
+    if (scroll) {
+      binder.scrollIntoView({ behavior: smooth && !reduceMotion ? "smooth" : "auto", block: "start" });
+    }
+    return true;
+  }
+
+  const menu = document.querySelector(".menu");
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest('a[href^="#"]');
+    if (!link) return;
+    if (menu) menu.open = false;
+    const id = link.hash.slice(1);
+    if (!ids.includes(id)) return;
+    event.preventDefault();
+    openDoc(id, { scroll: true });
+    try { history.replaceState(null, "", "#" + id); } catch (err) { /* Vorschau ohne History */ }
+  });
+
+  tablist.addEventListener("keydown", (event) => {
+    const current = tabs.indexOf(document.activeElement);
+    if (current < 0) return;
+    const keys = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 };
+    let next = null;
+    if (event.key in keys) next = (current + keys[event.key] + tabs.length) % tabs.length;
+    if (event.key === "Home") next = 0;
+    if (event.key === "End") next = tabs.length - 1;
+    if (next === null) return;
+    event.preventDefault();
+    openDoc(tabs[next].hash.slice(1));
+    tabs[next].focus();
+  });
+
+  const startId = decodeURIComponent(window.location.hash.slice(1));
+  if (!openDoc(startId, { scroll: true, smooth: false })) openDoc(ids[0]);
+
+  // E-Mail-Adresse kopieren, sonst wenigstens markieren
+  document.addEventListener("click", async (event) => {
+    const button = event.target.closest("[data-copy]");
+    if (!button) return;
+    const label = button.querySelector(".copy-label");
+    const original = label.textContent;
+    try {
+      await navigator.clipboard.writeText(button.dataset.copy);
+      label.textContent = "Kopiert";
+    } catch (err) {
+      const target = document.getElementById(button.dataset.target);
+      if (target) {
+        const range = document.createRange();
+        range.selectNodeContents(target);
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+      }
+      label.textContent = "Markiert, jetzt kopieren";
+    }
+    window.setTimeout(() => { label.textContent = original; }, 2400);
+  });
+})();
+</script>
